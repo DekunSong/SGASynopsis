@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% ADD PACKAGES here:
+%
+
+\usepackage{amsmath,amsfonts,graphicx,amssymb}
+\usepackage{setspace, ascii, hyperref, mathrsfs, yfonts}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\renewcommand{\thepage}{\arabic{page}}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\theequation}{\arabic{equation}}
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thetable}{\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure #1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+\newenvironment{sketch}{{\it Sketch:}}{\hfill\rule{2mm}{2mm}}
+\linespread{1.2}
+\begin{document}
+\title{Synopsis of \textit{Revêtements étales et groupe fondamental} (SGA 1)}
+Based on the \LaTeX ed version: \url{https://arxiv.org/search/math?searchtype=author&query=Grothendieck%2C+A}. Changed some notations to fit current convention, and included a few references (all tags refer to the \href{https://stacks.math.columbia.edu}{Stacks project}).
+
+
+\section{Étale morphisms}
+\subsection{Notions of differential calculus}
+Let $X$ be a scheme over $Y$, and let $\Delta_{X/Y}$ denote the diagonal morphism $X\to X\times_Y X$. This is a locally closed embedding, hence a closed embedding of $X$ in some open subscheme $V$ in $X\to X\times_Y X$. Let $\mathscr{I}_X$ be the sheaf of ideals corresponding to the closed embedding $X\to V(\subseteq X\times_Y X)$. The sheaf $\mathscr{I}_X/\mathscr{I}_X^2$ can be seen as a quasi-coherent sheaf\footnote{the \textit{conormal sheaf}, \href{https://stacks.math.columbia.edu/tag/01R1}{Tag 01R1}.} over $X$, which will be denoted as $\Omega^1_{X/Y}$. If $X\to Y$ is of finite type, then $\Omega^1_{X/Y}$ is also of finite type. It behaves well under base extension $Y'\to Y$. We also introduce $\mathscr{O}_{X\times_Y X}/\mathscr{I}_X^{n+1}=\mathscr{P}^n_{X/Y}$. They are sheaves of rings on $X$, making $X$ a scheme that is denoted as $\Delta^n_{X/Y}:=(X,\mathscr{P}^n_{X/Y})$, and called \textit{the $n$-th infinitesimal neighborhood of $X/Y$}.
+
+For the sake of simplicity, from now on all schemes are assumed to be locally Noetherian.
+
+\subsection{Quasi-finite morphisms}
+\paragraph{Proposition 2.1} Let $A\to B$ be a local homomorphism (the rings are now assumed Noetherian). Let $\textswab{m}$ be the maximal ideal of $A$, $\textswab{t}(B)$ be that of B, then the following are equivalent:
+
+(i) $B/\textswab{m}B$ is a finite dimensional vector space over $k=A/\textswab{m}$.
+
+(ii) $\textswab{m}B$ is an ideal of definition, and $B/\textswab{t}(B)=k(B)$ is an extension of $k=k(A)$.
+
+(iii) The completion $\hat{B}$ is finite over $\hat{A}$.
+
+Then $B$ is \textit{quasi-finite} over $A$. $f:X\to Y$ is quasi-finite at $x\in X$ if $\mathscr{O}_x$ is quasi-finite over $\mathscr{O}_{f(x)}$. That is also to say $x$ is \textit{isolated in its fiber} $f^{-1}(x)$. $f$ is said to be quasi-finite, if it is quasi-finite at any point.
+
+\paragraph{Corollary 2.2} If $A$ is complete, then quasi-finite is equivalent to finite.
+
+\subsection{Unramified morphisms}
+\paragraph{Proposition 3.1} Let $f:X\to Y$ be a morphism of finite type, let $x\in X$ and $y=f(x)$. The following are equivalent:
+
+(i) $\mathscr{O}_x/\textswab{m}_y\mathscr{O}_x$ is a finite separable extension of $k(y)$.
+
+(ii) $\Omega^1_{X/Y}$ is zero on $x$.
+
+(iii) The diagonal morphism $\Delta_{X/Y}$ is an open embedding on a neighborhood of $x$.
+
+\paragraph{Definition 3.2} a) The above morphism $f$ is said to be \textit{unramified} over $x$.
+
+b) A local homomorphism $A\to B$ is said to be \textit{unramified}, if $B/\textswab{t}(A)B$ is a finite separable extension of $A/\textswab{t}(A)$.
+
+\paragraph{Corollary 3.3} The unramified points of $f$ form a open set.
+
+\paragraph{Corollary 3.4} Let $X',X$ are schemes of finite type over $Y$, with $Y$-morphism $g:X'\to X$. If $X$ is unramified over $Y$, then the graph morphism $X'\to X\times_Y X$ is an open embedding.
+
+\paragraph{Proposition 3.5} (i) Open embeddings are unramified.
+
+(ii) The composition of two unramified morphisms is unramified.
+
+(iii) The base extension of an unramified morphism is unramified.
+
+\paragraph{Corollary 3.6} (iv) The Cartesian product of two unramified morphisms is unramified.
+
+(v) If $gf$ is unramified, then so is $f$.
+
+(vi) If $f$ is underamified, then so is $f_{\mathrm{red}}$.
+
+\paragraph{Proposition 3.7} Let $A\to B$ be a local homomorphism, and suppose that either the extension of residues $k(B)/k(A)$ is trivial, or $k(A)$ is algebraically closed. Then in order for $B/A$ to be unramified, it is necessary and sufficient that $\hat{B}$ (as a commutative $\hat{A}$-algebra) is a quotient of $\hat{A}$.
+
+\subsection{Étale morphisms and étale surfaces}
+We now assume necessary knowledge of flat morphism and postpone more detailed discussion until Exposition IV.
+
+\paragraph{Definition 4.1} a) Let $f:X\to Y$ be a morphism of finite type. We say $f$ is \textit{étale} at $x$ if $f$ is both flat and unramified at $x$. $f$ is said to be étale if it is étale at every point.
+
+b) Let $f:A\to B$ be a local homomorphism. We say that $f$ is étale, or $B$ is étale over $A$, if $B$ is flat and unramified over $A$.
+
+\paragraph{Proposition 4.2} In order for $B$ to be étale over $A$, it is necessary and sufficient that $\hat{B}$ is étale over $\hat{A}$.
+
+\paragraph{Corollary 4.3} Let $f:X\to Y$ be a morphism of finite type, and let $x\in X$. The fact that $f$ is étale at $x$ only depends on the homomorphism $\mathscr{O}_{f(x)}\to \mathscr{O}_x$, and even only on the corresponding homomorphisms of their completions.
+
+\paragraph{Proposition 4.5} Let $f:X\to Y$ be a morphism of finite type, then the points on which $f$ is étale form an open set.
+
+\paragraph{Proposition 4.6} (i) Open immersions are étale.
+
+(ii) The composition of two étale morphisms is étale.
+
+(iii) The base extension of an étale morphism is étale.
+
+\paragraph{Corollary 4.7} The Cartesian product of two étale morphisms is also étale.
+
+\paragraph{Corollary 4.8} Let $X,X'$ be two schemes over $Y$, with $g:X\to X'$ being a $Y$-morphism. If $X'$ is unramified over $Y$ and $X$ is étale over $Y$, then $g$ is étale as well.
+
+\end{document}
